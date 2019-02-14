@@ -14,9 +14,9 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+WebUI.openBrowser('http://www.growviews.com/')
 
-WebUI.navigateToUrl('http://www.growviews.com/')
+WebUI.maximizeWindow()
 
 WebUI.click(findTestObject('Object Repository/Page_GrowViews  Grow youtube views/span_Login'))
 
@@ -26,14 +26,12 @@ WebUI.setEncryptedText(findTestObject('Object Repository/Page_Growviews Dashboar
 
 WebUI.click(findTestObject('Object Repository/Page_Growviews Dashboard/button_Sign in'))
 
-for (int i = 0; i < 5; i++) {
+while(true) {
 	WebUI.delay(2)
-	
 	WebUI.click(findTestObject('Object Repository/Page_Growviews Dashboard/button_RUN THE PLAYER'))
-	WebUI.switchToDefaultContent()
 	int delay = WebUI.getAttribute(findTestObject('Object Repository/Page_Growviews Dashboard/label_seconds'), "innerHTML").find( /\d+/ ).toInteger()
+	WebUI.comment('Delay for ' + delay + ' seconds')
 	WebUI.delay(delay)
-	WebUI.switchToWindowIndex(1)
 	WebUI.closeWindowIndex(1)
 	WebUI.switchToDefaultContent()
 }
